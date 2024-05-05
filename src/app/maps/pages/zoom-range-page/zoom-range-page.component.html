@@ -2,17 +2,21 @@
 
 <div class="floating-range p-2">
   <div class="floating-content">
-    <button class="btn btn-outline-primary btn-sm"> - </button>
+    <button (click)="zoomOut()" class="btn btn-outline-primary btn-sm"> - </button>
+
     <input type="range"
       class="form-range px-2"
       min="-2"
       max="18"
+      [value]="zoom"
+      (input)="zoomChanges( zoomInput.value )"
+      #zoomInput
     >
-    <button class="btn btn-outline-primary btn-sm"> + </button>
+    <button (click)="zoomIn()" class="btn btn-outline-primary btn-sm"> + </button>
   </div>
 
   <span class="form-label">
-    Zoom Level: {{ 10.2 }}
+    Zoom Level: {{ zoom | number: '2.2-2'}}
     <br>
     Lng,Lat {{ 'algo' }}
   </span>
