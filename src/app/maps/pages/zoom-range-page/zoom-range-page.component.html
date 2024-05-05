@@ -1,1 +1,20 @@
-<p>zoom-range-page works!</p>
+<div id='map' #map></div>
+
+<div class="floating-range p-2">
+  <div class="floating-content">
+    <button class="btn btn-outline-primary btn-sm"> - </button>
+    <input type="range"
+      class="form-range px-2"
+      min="-2"
+      max="18"
+    >
+    <button class="btn btn-outline-primary btn-sm"> + </button>
+  </div>
+
+  <span class="form-label">
+    Zoom Level: {{ 10.2 }}
+    <br>
+    Lng,Lat {{ 'algo' }}
+  </span>
+
+</div>
