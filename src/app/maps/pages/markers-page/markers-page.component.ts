@@ -62,4 +62,13 @@ ngAfterViewInit(): void {
 
   }
 
+  flyTo( marker: Marker ) {
+
+    this.map?.flyTo({
+      zoom: 14,
+      center: marker.getLngLat()
+    });
+
+  }
+
 }
