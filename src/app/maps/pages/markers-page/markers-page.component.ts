@@ -1,9 +1,15 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { LngLat, Map, Marker } from 'mapbox-gl';
+import { CommonModule } from '@angular/common';
 
 interface MarkerColor {
   color: string;
   marker?: Marker;
+}
+
+interface PlainMarker {
+  color: string;
+  lngLat: number[];
 }
 
 @Component({
@@ -30,6 +36,7 @@ ngAfterViewInit(): void {
       zoom: this.zoom, // starting zoom
     });
 
+    this.readFromLocalStorage();
   }
 
   createMarker() {
@@ -53,6 +60,8 @@ ngAfterViewInit(): void {
     .addTo(this.map);
 
     this.markers.push( { color, marker } );
+
+    this.saveToLocalStorage();
   }
 
   deleteMarker( i: number ) {
@@ -70,5 +79,33 @@ ngAfterViewInit(): void {
     });
 
   }
+
+  saveToLocalStorage() {
+    const plainMarkers: PlainMarker[] = this.markers.map( ({ color, marker }) => {
+
+      return {
+        color: color,
+        lngLat: marker!.getLngLat().toArray()
+      }
+    });
+
+    localStorage.setItem('plainMarkers', JSON.stringify(plainMarkers));
+  }
+
+  readFromLocalStorage() {
+
+    const plainMarkersString = localStorage.getItem('plainMarkers') ?? '[]';
+    const plainMarkers: PlainMarker[] = JSON.parse( plainMarkersString );
+
+    plainMarkers.forEach( ({ color,  lngLat}) => {
+
+      const [lng, lat] = lngLat;
+      const coords = new LngLat( lng, lat );
+
+      this.addMarker( coords, color );
+    });
+
+  }
+
 
 }
