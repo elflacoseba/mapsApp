@@ -18,7 +18,6 @@ import { CounterAloneComponent } from '../alone/components/counter-alone/counter
 @NgModule({
   declarations: [
     MiniMapComponent,
-    SideMenuComponent,
     MapsLayoutComponent,
     FullScreenPageComponent,
     MarkersPageComponent,
@@ -28,7 +27,8 @@ import { CounterAloneComponent } from '../alone/components/counter-alone/counter
   imports: [
     CommonModule,
     MapsRoutingModule,
-    CounterAloneComponent
+    CounterAloneComponent,
+    SideMenuComponent
   ]
 })
 export class MapsModule { }
