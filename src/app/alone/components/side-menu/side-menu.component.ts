@@ -7,7 +7,7 @@ interface MenuItem {
 
 
 @Component({
-  selector: 'maps-side-menu',
+  selector: 'side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.css']
 })
@@ -18,5 +18,6 @@ export class SideMenuComponent {
     { name: 'Zoom-Range', route: '/maps/zoomrange' },
     { name: 'Markers', route: '/maps/markers' },
     { name: 'Houses', route: '/maps/properties' },
+    { name: 'Alone', route: '/maps/alone' },
   ]
 }
